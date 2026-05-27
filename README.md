@@ -1,62 +1,52 @@
-# Your Project Name
-
-| | |
-|-|-|
-|`Author` | Your full name
-
-## Description
-
-## Motivation
-
-## Architecture
-
-### Block diagram
-
-<!-- Make sure the path to the picture is correct -->
-![Block Diagram](schematics/block_diagram.png)
-
-### Schematic
-
 ![Schematic](schematics/kicad_schematic.png)
+
+## Smart Door Opener with Passcode
+
+A security system that opens a door using a secret code entered on a keypad. Built with Arduino UNO, 4x4 membrane keypad, and SG90 servo motor.
 
 ### Components
 
-
-<!-- This is just an example, fill in with your actual components -->
-
 | Device | Usage | Price |
 |--------|--------|-------|
-| Activ Buzzer | Buzzer | [1.5 RON](https://www.optimusdigital.ro/ro/audio-buzzere/635-buzzer-activ-de-3-v.html?search_query=buzzer&results=61) |
-| Push Button | Button | [1 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html?search_query=buton&results=222) |
-| Jumper Wires | Connecting components | [7 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/884-set-fire-tata-tata-40p-10-cm.html?search_query=set+fire&results=110) |
-| Breadboard | Project board | [10 RON](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/8-breadboard-830-points.html?search_query=breadboard&results=145) |
+| Arduino UNO | Microcontroller | [40 RON](https://www.optimusdigital.ro/ro/placi-arduino/1837-arduino-uno-r3-ch340.html?search_query=arduino+uno&results=121) |
+| Servo motor SG90 | Door lock mechanism | [9.49 RON](https://www.optimusdigital.ro/ro/servomotoare/978-micro-servo-motor-sg90-9g.html?search_query=sg90&results=33) |
+| 4x4 Matrix Membrane Keypad | Passcode input | [9 RON](https://www.optimusdigital.ro/ro/tastaturi/1238-tastatura-matriciala-4x4.html?search_query=keypad+4x4&results=32) |
+| Jumper Wires | Connecting components | [20 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/884-set-fire-tata-tata-40p-10-cm.html?search_query=fire&results=110) |
+| Breadboard (optional) | Project board | [10 RON](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/8-breadboard-830-points.html) |
 
 ### Libraries
 
-<!-- This is just an example, fill in the table with your actual components -->
-
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [lib-name1](link-to-lib) | official description of the lib | Used for accesing the peripherals of the microcontroller  |
-| [lib-name2](link-to-lib) | official description of the lib | Used for accesing the peripherals of the microcontroller  |
+| [Keypad](https://www.arduino.cc/reference/en/libraries/keypad/) | Official Arduino library for matrix keypads | Used for reading the 4x4 membrane keypad and detecting which key is pressed |
+| [Servo](https://www.arduino.cc/reference/en/libraries/servo/) | Built-in Arduino library for servo motors | Used for controlling the SG90 servo motor to open/close the door lock mechanism |
 
-## Log
+## How It Works
 
-<!-- write every week your progress here -->
+1. The user enters a 4-digit code on the keypad.
+2. The Arduino compares the entered code with the predefined password.
+3. If the code is correct:
+   - The servo motor rotates 90 degrees (unlocks the door).
+   - After 3 seconds, the servo returns to 0 degrees (locks the door).
+4. If the code is incorrect:
+   - The door remains locked.
+   - The system resets and waits for a new attempt.
 
-### Week 6 - 12 May
+## Wiring Instructions
 
-### Week 7 - 19 May
+| Keypad Pin | Arduino Pin |
+|------------|-------------|
+| Row 1 (R1) | Digital Pin 9 |
+| Row 2 (R2) | Digital Pin 8 |
+| Row 3 (R3) | Digital Pin 7 |
+| Row 4 (R4) | Digital Pin 6 |
+| Column 1 (C1) | Digital Pin 5 |
+| Column 2 (C2) | Digital Pin 4 |
+| Column 3 (C3) | Digital Pin 3 |
+| Column 4 (C4) | Digital Pin 2 |
 
-### Week 20 - 26 May
-
-
-## Reference links
-
-<!-- Fill in with appropriate links and link titles -->
-
-[Tutorial 1](https://www.youtube.com/watch?v=wdgULBpRoXk&t=1s&ab_channel=BenEater)
-
-[Article 1](https://www.explainthatstuff.com/induction-motors.html)
-
-[Link title](https://projecthub.arduino.cc/)
+| Servo Motor | Arduino Pin |
+|-------------|-------------|
+| Red (VCC) | 5V |
+| Brown/Black (GND) | GND |
+| Orange/Yellow (Signal) | Digital Pin 10 |
